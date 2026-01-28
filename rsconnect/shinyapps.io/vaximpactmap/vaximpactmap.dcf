@@ -1,0 +1,10 @@
+name: vaximpactmap
+title:
+username: vaximpactmap
+account: vaximpactmap
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16538916
+bundleId: 11508512
+url: https://vaximpactmap.shinyapps.io/vaximpactmap/
+version: 1
