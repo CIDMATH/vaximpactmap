@@ -5,6 +5,6 @@ account: vaximpactmap
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 16538916
-bundleId: 11512037
+bundleId: 11565096
 url: https://vaximpactmap.shinyapps.io/vaximpactmap/
 version: 1
