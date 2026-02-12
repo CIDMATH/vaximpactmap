@@ -249,6 +249,8 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   
+  session$allowReconnect(TRUE)
+  
   # Disease images from CDC
   disease_images <- list(
     "Rotavirus" = here("img/rotavirus.jpg"),
@@ -268,7 +270,7 @@ server <- function(input, output, session) {
     title = "Welcome to VaxImpactMap",
     HTML("
       <p>This interactive tool visualizes the potential health and economic impacts of declining childhood vaccination coverage in the United States.</p>
-      
+
       <h4>How to use this tool:</h4>
       <ol>
         <li><strong>Select a disease</strong> from the dropdown menu</li>
@@ -278,11 +280,11 @@ server <- function(input, output, session) {
         <li><strong>Choose display format:</strong> Counts or Rates per 100k population</li>
         <li><strong>Download your map</strong> with full attribution and parameters for sharing</li>
       </ol>
-      
+
       <p><strong>Hover over any state</strong> to see detailed statistics.</p>
-      
+
       <p style='font-size: 12px; color: #666; margin-top: 20px;'>
-      This tool is for educational and advocacy purposes. 
+      This tool is for educational and advocacy purposes.
       Data is based on epidemiological models and should be interpreted appropriately.
       </p>
     "),
@@ -296,17 +298,17 @@ server <- function(input, output, session) {
       title = "About VaxImpactMap",
       HTML("
         <h4>Purpose</h4>
-        <p>This visualization tool demonstrates the potential public health and economic consequences 
+        <p>This visualization tool demonstrates the potential public health and economic consequences
         of declining childhood vaccination coverage across the United States.</p>
-        
+
         <h4>Methodology</h4>
-        <p>The estimates are based on epidemiological models that calculate disease burden under 
+        <p>The estimates are based on epidemiological models that calculate disease burden under
         different vaccination coverage scenarios.</p>
-        
+
         <h4>License</h4>
-        <p>Content is licensed under CC BY-NC-ND 4.0. When sharing downloaded maps, 
+        <p>Content is licensed under CC BY-NC-ND 4.0. When sharing downloaded maps,
         please maintain the attribution included in the image.</p>
-        
+
         <h4>Contact</h4>
         <p>For questions or more information, please visit VaxImpactMap.org.</p>
       "),
