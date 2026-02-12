@@ -999,7 +999,7 @@ server <- function(input, output, session) {
         ),
         opts_tooltip(
           css = "background-color:white;color:black;padding:10px;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.5);",
-          opacity = 0.95,
+          opacity = 1,
           offx = 20,  # Offset so it doesn't cover the state
           offy = -20,
           delay_mouseout = 1000*15  # 15 seconds - 1000 ms in 1 second * 15 seconds
