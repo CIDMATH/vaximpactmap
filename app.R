@@ -991,9 +991,15 @@ server <- function(input, output, session) {
       height_svg = 6,
       options = list(
         opts_hover(css = "stroke:black;stroke-width:3;"),
+        opts_selection(
+          type = "single",  # Only one element selectable at a time
+          css = "stroke:black;stroke-width:3;",  # Style for selected element
+          only_shiny = FALSE  # Selection works even without Shiny
+        ),
         opts_tooltip(
           css = "background-color:white;color:black;padding:10px;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.5);",
-          opacity = 0.95
+          opacity = 0.95,
+          use_cursor_pos = FALSE  # Keeps tooltip positioned on the element
         ),
         opts_toolbar(hidden = c('selection', 'zoom', 'misc')),
         opts_sizing(rescale = TRUE)
