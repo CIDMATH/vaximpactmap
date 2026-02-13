@@ -1050,7 +1050,7 @@ server <- function(input, output, session) {
         opts_selection(
           type = "single",
           css = "stroke:black;stroke-width:3;fill-opacity:1;",
-          only_shiny = FALSE  # Important for touch devices
+          only_shiny = FALSE
         ),
         opts_tooltip(
           css = "background-color:rgb(255,255,255);
@@ -1064,7 +1064,7 @@ server <- function(input, output, session) {
           offx = 20,
           offy = -20,
           delay_mouseout = 1000*2, # 1 second delay before disappearance
-          use_cursor_pos = FALSE
+          use_cursor_pos = TRUE
         ),
         opts_toolbar(hidden = c('selection', 'zoom', 'misc')),
         opts_sizing(rescale = TRUE)
