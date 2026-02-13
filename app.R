@@ -105,6 +105,20 @@ ui <- fluidPage(
         margin-right: 5px;
       }
       
+      .ggiraph-tooltip {
+        opacity: 1 !important;
+        background-color: rgba(0, 0, 0, 0.9) !important;
+      }
+      
+      @media only screen and (max-width: 768px) {
+        .ggiraph-tooltip {
+          opacity: 1 !important;
+          background-color: rgba(0, 0, 0, 0.95) !important;
+          font-size: 14px !important;
+          padding: 8px !important;
+        }
+      }
+      
     "))
   ),
 
@@ -999,10 +1013,10 @@ server <- function(input, output, session) {
         ),
         opts_tooltip(
           css = "background-color:white;color:black;padding:10px;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.5);",
-          opacity = 1,
+          opacity = 0.99,
           offx = 20,  # Offset so it doesn't cover the state
           offy = -20,
-          delay_mouseout = 1000*15  # 15 seconds - 1000 ms in 1 second * 15 seconds
+          delay_mouseout = 1000*8  # 8 seconds - 1000 ms in 1 second * 8 seconds
         ),
         opts_toolbar(hidden = c('selection', 'zoom', 'misc')),
         opts_sizing(rescale = TRUE)
