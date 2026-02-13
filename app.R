@@ -1063,7 +1063,7 @@ server <- function(input, output, session) {
           opacity = 1,
           offx = 20,
           offy = -20,
-          delay_mouseout = 1000*15, # 15 second delay before disappearance
+          delay_mouseout = 1000*2, # 1 second delay before disappearance
           use_cursor_pos = FALSE
         ),
         opts_toolbar(hidden = c('selection', 'zoom', 'misc')),
