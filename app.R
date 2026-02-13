@@ -107,19 +107,59 @@ ui <- fluidPage(
       
       .ggiraph-tooltip {
         opacity: 1 !important;
-        background-color: rgba(0, 0, 0, 0.9) !important;
+        background-color: rgb(255, 255, 255) !important;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        pointer-events: none;
       }
       
-      @media only screen and (max-width: 768px) {
-        .ggiraph-tooltip {
-          opacity: 1 !important;
-          background-color: rgba(0, 0, 0, 0.95) !important;
-          font-size: 14px !important;
-          padding: 8px !important;
-        }
+      svg [data-id] {
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
       }
       
+    ")),
+    
+    tags$script(HTML("
+      $(document).ready(function() {
+        // Fix iOS Safari tooltip on first tap
+        $(document).on('touchstart', 'svg [data-id]', function(e) {
+          e.preventDefault();
+          var element = this;
+          
+          // Dispatch mouseover event
+          var mouseoverEvent = new MouseEvent('mouseover', {
+            'view': window,
+            'bubbles': true,
+            'cancelable': true
+          });
+          element.dispatchEvent(mouseoverEvent);
+          
+          // Also dispatch click to ensure selection
+          var clickEvent = new MouseEvent('click', {
+            'view': window,
+            'bubbles': true,
+            'cancelable': true
+          });
+          element.dispatchEvent(clickEvent);
+        });
+        
+        // Clear tooltip when tapping elsewhere
+        $(document).on('touchstart', function(e) {
+          if (!$(e.target).closest('svg [data-id]').length) {
+            $('svg [data-id]').each(function() {
+              var mouseoutEvent = new MouseEvent('mouseout', {
+                'view': window,
+                'bubbles': true,
+                'cancelable': true
+              });
+              this.dispatchEvent(mouseoutEvent);
+            });
+          }
+        });
+      });
     "))
+    
   ),
 
   titlePanel(
@@ -1009,14 +1049,22 @@ server <- function(input, output, session) {
         ),
         opts_selection(
           type = "single",
-          css = "stroke:black;stroke-width:3;fill-opacity:1;"
+          css = "stroke:black;stroke-width:3;fill-opacity:1;",
+          only_shiny = FALSE  # Important for touch devices
         ),
         opts_tooltip(
-          css = "background-color:white;color:black;padding:10px;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.5);",
-          opacity = 0.99,
-          offx = 20,  # Offset so it doesn't cover the state
+          css = "background-color:rgb(255,255,255);
+             color:black;
+             padding:10px;
+             border-radius:5px;
+             box-shadow:0 0 10px rgba(0,0,0,0.5);
+             border:1px solid #ccc;
+             font-size:15px;",
+          opacity = 1,
+          offx = 20,
           offy = -20,
-          delay_mouseout = 1000*8  # 8 seconds - 1000 ms in 1 second * 8 seconds
+          delay_mouseout = 1000*15, # 15 second delay before disappearance
+          use_cursor_pos = FALSE
         ),
         opts_toolbar(hidden = c('selection', 'zoom', 'misc')),
         opts_sizing(rescale = TRUE)
