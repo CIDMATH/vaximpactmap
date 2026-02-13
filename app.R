@@ -1060,10 +1060,7 @@ server <- function(input, output, session) {
              box-shadow:0 0 10px rgba(0,0,0,0.5);
              border:1px solid #ccc;
              font-size:15px;",
-          opacity = 1,
-          offx = 20,
-          offy = -20,
-          delay_mouseout = 1000*2, # 1 second delay before disappearance
+          opacity = 0.95,
           use_cursor_pos = TRUE
         ),
         opts_toolbar(hidden = c('selection', 'zoom', 'misc')),
